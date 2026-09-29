@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">🏠 House Price Predictor</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#predict">Prediction</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Predict Your House Price</h1>
+            <p>Get an estimated property value using machine learning.</p>
+            <a href="#predict" class="btn">Predict Price</a>
+        </div>
+    </section>
+
+    <section id="predict" class="prediction-section">
+        <div class="container">
+            <h2>Enter Property Details</h2>
+            
+            <form id="prediction-form" class="card">
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="e.g. Whitefield" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="area">Area (Square Feet)</label>
+                    <input type="number" id="area" name="area" min="100" placeholder="1500" required>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <input type="number" id="bedrooms" name="bedrooms" min="1" max="10" placeholder="3" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <input type="number" id="bathrooms" name="bathrooms" min="1" max="10" placeholder="2" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="balcony">Balconies</label>
+                        <input type="number" id="balcony" name="balcony" min="0" max="5" placeholder="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property_type">Property Type</label>
+                        <select id="property_type" name="property_type" required>
+                            <option value="Super built-up  Area">Super built-up Area</option>
+                            <option value="Built-up  Area">Built-up Area</option>
+                            <option value="Plot  Area">Plot Area</option>
+                            <option value="Carpet  Area">Carpet Area</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <p class="note">* Note: Fields like Floors, Parking, Property Age, and Furnishing Status were omitted because the dataset (Bangalore House Prices) does not contain this information. Balcony was added as it is an important predictor in the dataset.</p>
+                
+                <button type="submit" class="btn submit-btn">Predict Price</button>
+            </form>
+            
+            <div id="result-container" class="card hidden">
+                <h3>Estimated House Price</h3>
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Predicting...</p>
+                </div>
+                <div id="prediction-result" class="price-value"></div>
+                <div id="error-message" class="error hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step card">
+                    <h3>1. Enter Details</h3>
+                    <p>Enter property details like location, area, and bedrooms in the form above.</p>
+                </div>
+                <div class="step card">
+                    <h3>2. Processing</h3>
+                    <p>The system processes the information and prepares it for the ML model.</p>
+                </div>
+                <div class="step card">
+                    <h3>3. Analysis</h3>
+                    <p>The machine learning model analyzes the features based on past real estate data.</p>
+                </div>
+                <div class="step card">
+                    <h3>4. Estimation</h3>
+                    <p>The system generates an estimated price in Indian Rupees (₹).</p>
+                </div>
+            </div>
+            <div class="disclaimer card">
+                <p><strong>Disclaimer:</strong> This result is an ML-based estimate using historical data and should not be treated as an official professional property valuation.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 House Price Prediction System. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
